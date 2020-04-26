@@ -37,33 +37,25 @@
     <script>
 
 
-$( document ).ready(function() {
-    
-    
+$(document).ready(function(){
+
+var displayDate = moment().format("dddd MMMM Do YYYY");
+//console.log(displayDate);
+// var displayTime = moment().format("h:mm:ss A");
+// console.log(displayTime);
+// $("#currentDay").html(displayDate + "<hr/>");
+// $("#currentDay").append(displayTime);
+
+function tickingClock() {
+$("#currentDay").html(displayDate + "<hr/>" + moment().format("h:mm:ss A"));
+setInterval(tickingClock, 1000);
+}
 
 
-  var displayDate =moment().format("dddd MMMM Do YYYY");
-    //console.log(displayDate);
-    // var displayTime = moment().format("h:mm:ss A");
-    // console.log(displayTime);
-    // $("#currentDay").html(displayDate + "<hr/>");
-   // $("#currentDay").append(displayTime);
-
-
-//TODO  add jquery ready code
-
-
-   function tickingClock() {
-     $("#currentDay").html(displayDate + "<hr/>" + moment().format("h:mm:ss A"));
-     setInterval(update, 1000);
-   }
 tickingClock();
 
 
-
-});
-
-
+});  // END ready function
 
 
  
