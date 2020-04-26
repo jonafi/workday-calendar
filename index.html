@@ -4,16 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
@@ -29,7 +21,30 @@
       <p id="currentDay" class="lead"></p>
     </header>
     <div class="container">
-      <!-- Timeblocks go here -->
+
+
+    <!-- <div id="test">??</div>   -->
+    <!-- TO DO MAKE BOOTSTRAP COLUMNS 2 COL / 8 COL / 2 COL-->
+    <div>
+      <span>8PM</span>
+      <textarea style="background-color: lightgray; border:none; width:80%; outline:none; resize:none; margin:0;"></textarea>
+      <i class="fas fa-save" style="font-size:48px; color:darkgreen; vertical-align:top; margin:0; padding:2px;"></i>
+    </div>
+    <div>
+      <textarea style="background-color: red; border:none; width:80%; outline:none; resize:none; margin:0;"></textarea>
+      <i class="fas fa-save" style="font-size:48px; color:darkgreen; vertical-align:top; margin:0; padding:2px;"></i>
+    </div>
+    <div>
+      <textarea style="background-color: lightgreen; border:none; width:80%; outline:none; resize:none; margin:0;"></textarea>
+      <i class="fas fa-save" style="font-size:48px; color:darkgreen; vertical-align:top; margin:0; padding:2px;"></i>
+    </div>
+    <div>
+      <textarea style="background-color: lightgreen; border:none; width:80%; outline:none; resize:none; margin:0;"></textarea>
+      <i class="fas fa-save" style="font-size:48px; color:darkgreen; vertical-align:top; margin:0; padding:2px;"></i>
+    </div>
+
+    
+    <!-- Timeblocks go here -->
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -40,6 +55,12 @@
 $(document).ready(function(){
 
 var displayDate = moment().format("dddd MMMM Do YYYY");
+var currentHour = moment().format("k")
+
+
+
+
+$("#test").html(currentHour);
 //console.log(displayDate);
 // var displayTime = moment().format("h:mm:ss A");
 // console.log(displayTime);
