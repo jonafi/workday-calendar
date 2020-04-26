@@ -34,5 +34,40 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script>
+
+
+$( document ).ready(function() {
+    
+    
+
+
+  var displayDate =moment().format("dddd MMMM Do YYYY");
+    //console.log(displayDate);
+    // var displayTime = moment().format("h:mm:ss A");
+    // console.log(displayTime);
+    // $("#currentDay").html(displayDate + "<hr/>");
+   // $("#currentDay").append(displayTime);
+
+
+//TODO  add jquery ready code
+
+
+   function tickingClock() {
+     $("#currentDay").html(displayDate + "<hr/>" + moment().format("h:mm:ss A"));
+     setInterval(update, 1000);
+   }
+tickingClock();
+
+
+
+});
+
+
+
+
+ 
+
+  </script>
   </body>
 </html>
