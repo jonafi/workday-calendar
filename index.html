@@ -9,12 +9,12 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css" />
 <style>
-.deadSpace{margin:0 10px 30px 10px;}
+.deadSpace{margin:0 0 30px 0;}
 .timeEntry{border-bottom:1px solid black; border-top:1px solid black;}
 .timeEntry span{position:absolute; bottom:10px; right:5px;}
 textarea{width:100%; height:100%; background-color: lightgray; outline:none; resize:none; margin:0;}
 i{font-size:60px; color:darkgreen; position: absolute; bottom:10px; left:5px;}
-section{margin-top:7px;}
+section{margin-top:4px;}
 </style>
 
 
@@ -28,23 +28,48 @@ section{margin-top:7px;}
       <p id="currentDay" class="lead"></p>
     </header>
     <article class="container-fluid deadSpace">
-      <section class="row no-gutters" >
-      <div class="col timeEntry"><span>8PM</span></div>
-      <div class="col-10 col-xs-5"><textarea></textarea></div>
+      <section class="row no-gutters" id="9AM">
+      <div class="col timeEntry"><span>9 AM</span></div>
+      <div class="col-10 col-xs-5"><textarea id="9AM-apt"></textarea></div>
       <div class="col"><i class="fas fa-save" ></i></div>
       </section>
     <section class="row no-gutters">
-      <div class="col timeEntry"><span>8PM</span></div>
+      <div class="col timeEntry"><span>10 AM</span></div>
       <div class="col-10 col-xs-5"><textarea></textarea></div>
       <div class="col"><i class="fas fa-save"></i></div>
       </section>
     <section class="row no-gutters">
-      <div class="col timeEntry"><span>8PM</span></div>
+      <div class="col timeEntry"><span>11 AM</span></div>
       <div class="col-10 col-xs-5"><textarea></textarea></div>
       <div class="col"><i class="fas fa-save"></i></div>
     </section>
     <section class="row no-gutters">
-      <div class="col timeEntry"><span>8PM</span></div>
+      <div class="col timeEntry"><span>12 PM</span></div>
+      <div class="col-10 col-xs-5"><textarea></textarea></div>
+      <div class="col"><i class="fas fa-save"></i></div>
+    </section>
+    <section class="row no-gutters">
+      <div class="col timeEntry"><span>1 PM</span></div>
+      <div class="col-10 col-xs-5"><textarea></textarea></div>
+      <div class="col"><i class="fas fa-save"></i></div>
+    </section>
+    <section class="row no-gutters">
+      <div class="col timeEntry"><span>2 PM</span></div>
+      <div class="col-10 col-xs-5"><textarea></textarea></div>
+      <div class="col"><i class="fas fa-save"></i></div>
+    </section>
+    <section class="row no-gutters">
+      <div class="col timeEntry"><span>3 PM</span></div>
+      <div class="col-10 col-xs-5"><textarea></textarea></div>
+      <div class="col"><i class="fas fa-save"></i></div>
+    </section>
+    <section class="row no-gutters">
+      <div class="col timeEntry"><span>4 PM</span></div>
+      <div class="col-10 col-xs-5"><textarea></textarea></div>
+      <div class="col"><i class="fas fa-save"></i></div>
+    </section>
+    <section class="row no-gutters">
+      <div class="col timeEntry"><span>5 PM</span></div>
       <div class="col-10 col-xs-5"><textarea></textarea></div>
       <div class="col"><i class="fas fa-save"></i></div>
     </section>
@@ -62,12 +87,8 @@ section{margin-top:7px;}
 $(document).ready(function(){
 
 var displayDate = moment().format("dddd MMMM Do YYYY");
-var currentHour = moment().format("k")
+var currentHour = moment().format("k")  //used do deterine what has passed (gray), current (red), and future (green)
 
-
-
-
-$("#test").html(currentHour);
 //console.log(displayDate);
 // var displayTime = moment().format("h:mm:ss A");
 // console.log(displayTime);
@@ -79,8 +100,40 @@ $("#currentDay").html(displayDate + "<hr/>" + moment().format("h:mm:ss A"));
 setInterval(tickingClock, 1000);
 }
 
+function loadEntries(){
+  for(i=9;i<18;i++){
+
+//load from storage based on "k" value
+
+  }
+}
+
+function colorCode(currentHour){
+
+//make a class for old(value less than k), gray, ital, lighter text
+//make a cloas for current (value = to k), red, bold text
+//make a class for future (value greater than k), green, normal text
+//assign a class to each entry based on k passed in, and k.   
+
+}
+
+function saveEntry(event){
+  
+  //working option not best practice  rename IDs to start with LETTER??
+  var aptTime = event.target.parentElement.parentElement.id;
+  var aptTextId = "#" + aptTime + "-apt";
+  var aptText = $(aptTextId).val();
+  console.log (aptText);
+  localStorage.setItem(aptTime, aptText);
+}
+
+
 
 tickingClock();
+
+$("i").on("click",saveEntry);
+
+
 
 
 });  // END ready function
