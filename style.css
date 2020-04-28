@@ -69,3 +69,56 @@ textarea{
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
+
+/*added and appended styles*/
+
+.deadSpace{
+  margin:0 0 30px 0;
+}
+
+.timeEntry{
+  border-bottom:1px solid black; 
+  border-top:1px solid black;
+}
+
+.timeEntry span{
+  position:absolute; 
+  bottom:10px; 
+  right:5px;
+}
+
+textarea{
+  width:100%; 
+  height:100%; 
+  background-color: white; 
+  outline:none; 
+  resize:none; 
+  margin:0;
+}
+
+i{
+  font-size:60px; 
+  color:darkgreen; 
+  position: absolute; 
+  bottom:10px; 
+  left:5px;
+}
+
+section{
+  margin-top:4px;
+}
+
+.past{
+  font-style:italic; 
+  color:darkgray;
+}
+
+.present{
+  font-weight:bold; 
+  color:black;
+}
+
+.future{
+  background-color:lightgreen; 
+  color:black
+} 

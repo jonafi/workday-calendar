@@ -8,19 +8,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css" />
-<style>
-.deadSpace{margin:0 0 30px 0;}
-.timeEntry{border-bottom:1px solid black; border-top:1px solid black;}
-.timeEntry span{position:absolute; bottom:10px; right:5px;}
-textarea{width:100%; height:100%; background-color: white; outline:none; resize:none; margin:0;}
-i{font-size:60px; color:darkgreen; position: absolute; bottom:10px; left:5px;}
-section{margin-top:4px;}
-.past{font-style:italic; color:darkgray;}
-.present{font-weight:bold; color:black;}
-.future{background-color:lightgreen; color:black} 
-</style>
-
-
     <title>Work Day Scheduler</title>
   </head>
 
@@ -76,78 +63,50 @@ section{margin-top:4px;}
       <div class="col-10 col-xs-5"><textarea id="Hour-17-apt"></textarea></div>
       <div class="col"><i class="fas fa-save"  id="Hour-17"></i></div>
     </section>
-
-
-    
-    <!-- Timeblocks go here -->
   </article>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      var displayDate = moment().format("dddd MMMM Do YYYY");
+      var currentHour = moment().format("k");
 
+      function tickingClock() {
+        $("#currentDay").html(displayDate + "<hr/>" + moment().format("h:mm:ss A"));
+        setInterval(tickingClock, 1000);
+      }
 
-$(document).ready(function(){
+      function colorCode(currentHour){
+        currentHour = parseInt(currentHour);
+        for(i=9;i<18;i++){
+          $("#Hour-" + i + "-apt").val(localStorage.getItem("Hour-"+i));
+          if(i>currentHour){
+            $("#Hour-"+i+"-apt").addClass("future");
+          }
+          if(i===currentHour){
+            $("#Hour-"+i+"-apt").addClass("present");    
+          }
+          if(i<currentHour){
+            $("#Hour-"+i+"-apt").addClass("past");    
+          }
+        }
+      }
 
-var displayDate = moment().format("dddd MMMM Do YYYY");
-var currentHour = moment().format("k")  //used do deterine what has passed (gray), current (red), and future (green)
+      function saveEntry(event){
+        // ask TA about going up and down the DOM
+        var aptTime = event.target.id;
+        var aptTextId = "#" + aptTime + "-apt";
+        var aptText = $(aptTextId).val();
+        //console.log (event.target.parentElement.parentElement);
+        localStorage.setItem(aptTime, aptText);
+      }
 
-//console.log(displayDate);
-// var displayTime = moment().format("h:mm:ss A");
-// console.log(displayTime);
-// $("#currentDay").html(displayDate + "<hr/>");
-// $("#currentDay").append(displayTime);
+      colorCode(currentHour);
+      tickingClock();
+      $("i").on("click",saveEntry);
 
-function tickingClock() {
-  $("#currentDay").html(displayDate + "<hr/>" + moment().format("h:mm:ss A"));
-  setInterval(tickingClock, 1000);
-}
-
-function colorCode(currentHour){
-  currentHour = parseInt(currentHour);
-  for(i=9;i<18;i++){
-
-    $("#Hour-" + i + "-apt").val(localStorage.getItem("Hour-"+i));
-
-    if(i>currentHour){
-      $("#Hour-"+i+"-apt").addClass("future");
-    }
-    if(i===currentHour){
-      $("#Hour-"+i+"-apt").addClass("present");    
-    }
-    if(i<currentHour){
-      $("#Hour-"+i+"-apt").addClass("past");    
-    }
-
-
-  }
-}
-
-
-function saveEntry(event){
-  
-  // ask TA about going up and down the DOM
-  var aptTime = event.target.id;
-  var aptTextId = "#" + aptTime + "-apt";
-  var aptText = $(aptTextId).val();
-  console.log (event.target.parentElement.parentElement);
-  localStorage.setItem(aptTime, aptText);
-}
-
-
-colorCode(currentHour);
-tickingClock();
-
-$("i").on("click",saveEntry);
-
-
-
-
-});  // END ready function
-
-
- 
-
+    });  // END ready function
   </script>
   </body>
 </html>
