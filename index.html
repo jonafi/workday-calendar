@@ -107,7 +107,7 @@ function colorCode(currentHour){
   currentHour = parseInt(currentHour);
   for(i=9;i<18;i++){
 
-    $("#Hour-" + i + "-apt").val("poop");
+    $("#Hour-" + i + "-apt").val(localStorage.getItem("Hour-"+i));
 
     if(i>currentHour){
       $("#Hour-"+i+"-apt").addClass("future");
