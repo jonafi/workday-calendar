@@ -104,6 +104,10 @@ i{
   left:5px;
 }
 
+i:hover{
+  color:lime;
+}
+
 section{
   margin-top:4px;
 }
